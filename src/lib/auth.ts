@@ -17,6 +17,26 @@ interface AuthEnvironment {
   NEXT_PUBLIC_API_URL?: string;
 }
 
+let sharedConnection: { uri: string; client: MongoClient; ready: Promise<MongoClient> } | undefined;
+
+function databaseClient(uri: string) {
+  if (!sharedConnection || sharedConnection.uri !== uri) {
+    const client = new MongoClient(uri, {
+      maxPoolSize: 5,
+      minPoolSize: 0,
+      maxIdleTimeMS: 60_000,
+      serverSelectionTimeoutMS: 12_000,
+      connectTimeoutMS: 12_000
+    });
+    const connection = { uri, client, ready: client.connect() };
+    connection.ready.catch(() => {
+      if (sharedConnection === connection) sharedConnection = undefined;
+    });
+    sharedConnection = connection;
+  }
+  return sharedConnection.ready;
+}
+
 async function environment(): Promise<AuthEnvironment> {
   const local = process.env;
   if (local.MONGODB_URI && local.BETTER_AUTH_SECRET && local.BETTER_AUTH_URL) {
@@ -90,14 +110,7 @@ export type Auth = ReturnType<typeof createConfiguredAuth>;
 
 export async function withAuth<T>(operation: (auth: Auth, db: Db) => Promise<T>): Promise<T> {
   const env = await environment();
-  const client = new MongoClient(env.MONGODB_URI, {
-    maxPoolSize: 2, serverSelectionTimeoutMS: 12_000, connectTimeoutMS: 12_000,
-  });
-  try {
-    await client.connect();
-    const db = client.db(env.MONGODB_DB ?? "gearnest");
-    return await operation(createConfiguredAuth(db, client, env), db);
-  } finally {
-    await client.close();
-  }
+  const client = await databaseClient(env.MONGODB_URI);
+  const db = client.db(env.MONGODB_DB ?? "gearnest");
+  return operation(createConfiguredAuth(db, client, env), db);
 }

@@ -15,14 +15,24 @@ interface Envelope<T> {
   error?: { message?: string; code?: string };
 }
 
+let tokenRequest: Promise<string> | null = null;
+
+function accessToken() {
+  if (!tokenRequest) {
+    tokenRequest = authClient.token().then(({ data, error }) => {
+      if (error || !data?.token) throw new ApiError("Please sign in to continue.", 401, "UNAUTHENTICATED");
+      return data.token;
+    }).finally(() => { tokenRequest = null; });
+  }
+  return tokenRequest;
+}
+
 export async function api<T>(path: string, options: RequestInit & { authenticated?: boolean } = {}): Promise<T> {
   const { authenticated = true, ...init } = options;
   const headers = new Headers(init.headers);
   if (typeof init.body === "string" && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
   if (authenticated) {
-    const { data, error } = await authClient.token();
-    if (error || !data?.token) throw new ApiError("Please sign in to continue.", 401, "UNAUTHENTICATED");
-    headers.set("Authorization", `Bearer ${data.token}`);
+    headers.set("Authorization", `Bearer ${await accessToken()}`);
   }
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 25_000);
