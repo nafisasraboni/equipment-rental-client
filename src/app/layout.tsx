@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Providers } from "@/components/providers";
 import { SignInFeedback } from "@/components/auth/sign-in-feedback";
+import "@fontsource-variable/manrope";
 import "./globals.css";
 
 export const metadata: Metadata = {
