@@ -12,7 +12,7 @@ function required(key) {
 const origin = required("BETTER_AUTH_URL");
 const accounts = [
   { role: "admin", name: "Nafisa Sraboni", email: required("ADMIN_EMAIL"), password: required("ADMIN_PASSWORD") },
-  { role: "owner", name: "GearNest Demo Owner", email: required("OWNER_EMAIL"), password: required("OWNER_PASSWORD") },
+  { role: "owner", name: "Nafisa Sraboni", email: required("OWNER_EMAIL"), password: required("OWNER_PASSWORD") },
   { role: "customer", name: "GearNest Demo Customer", email: required("CUSTOMER_EMAIL"), password: required("CUSTOMER_PASSWORD") },
 ];
 
