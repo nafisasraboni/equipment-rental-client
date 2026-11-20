@@ -56,6 +56,7 @@ function createConfiguredAuth(db: Db, client: MongoClient, env: AuthEnvironment)
     advanced: { database: { generateId: () => crypto.randomUUID() } },
     trustedOrigins: [env.BETTER_AUTH_URL, "http://localhost:3000"],
     emailAndPassword: { enabled: true, minPasswordLength: 6, requireEmailVerification: false },
+    session: { cookieCache: { enabled: true, maxAge: 300, strategy: "compact" } },
     socialProviders: env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET ? {
       google: { clientId: env.GOOGLE_CLIENT_ID, clientSecret: env.GOOGLE_CLIENT_SECRET, prompt: "select_account" },
     } : {},
@@ -94,7 +95,6 @@ export async function withAuth<T>(operation: (auth: Auth, db: Db) => Promise<T>)
     maxPoolSize: 2, serverSelectionTimeoutMS: 12_000, connectTimeoutMS: 12_000,
   });
   try {
-    await client.connect();
     const db = client.db(env.MONGODB_DB ?? "gearnest");
     return await operation(createConfiguredAuth(db, client, env), db);
   } finally {
