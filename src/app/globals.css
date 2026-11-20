@@ -123,8 +123,7 @@ em { color: var(--primary); font-weight: 400; }
 .hero-image .equipment-image { object-position: 54% center; }
 .hero-image-shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, #10271dbb); }
 .hero-image-caption { position: absolute; bottom: 33px; left: 31px; right: 31px; color: #fff9e9; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: Georgia, serif; font-size: 24px; line-height: 1.25; }
-.hero-floating-card { position: absolute; display: flex; align-items: center; gap: 12px; left: -34px; bottom: -1px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); padding: 16px 24px 16px 16px; }
-.floating-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--cream); color: var(--primary); border-radius: 10px; }
+.hero-floating-card { position: absolute; display: flex; align-items: center; left: -34px; bottom: -1px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); padding: 16px 24px; }
 .hero-floating-card strong { display: block; font-size: 11px; font-weight: 600; }
 .hero-floating-card div > span { display: block; font-size: 10px; color: var(--muted); margin-top: 3px; }
 .hero-small-label { position: absolute; top: 42px; right: -16px; display: flex; align-items: center; gap: 7px; color: #244b38; background: #fdfbf2; border-radius: 24px; padding: 10px 17px; font-size: 10px; box-shadow: var(--shadow); }
@@ -515,7 +514,6 @@ em { color: var(--primary); font-weight: 400; }
   .hero-image { height: 390px; border-radius: 80px 22px 22px 22px; }
   .hero-image-caption { font-size: 21px; left: 24px; right: 24px; bottom: 43px; }
   .hero-floating-card { left: -22px; right: 25px; bottom: -8px; padding: 12px; }
-  .hero-floating-card .floating-icon { width: 35px; height: 35px; }
   .hero-round-stamp { width: 74px; height: 74px; left: -9px; top: -9px; }
   .hero-small-label { font-size: 9px; padding: 8px 12px; right: -5px; }
   .hero-proof { margin-top: 24px; }
