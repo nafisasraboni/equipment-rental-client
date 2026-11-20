@@ -84,12 +84,10 @@ em { color: var(--primary); font-weight: 400; }
 .button-sm { min-height: 40px; padding: 9px 14px; font-size: 12px; }
 .button-lg { min-height: 50px; padding: 14px 23px; }
 .button-icon { width: 42px; height: 42px; padding: 0; }
-.logo { display: inline-flex; gap: 9px; align-items: center; font-size: 26px; font-weight: 700; letter-spacing: -.065em; line-height: 1.2; white-space: nowrap; }
-.logo-mark { display: flex; align-items: center; justify-content: center; height: 37px; width: 37px; color: var(--background); background: var(--primary); border-radius: 11px; }
+.logo { display: inline-flex; align-items: baseline; font-size: 26px; font-weight: 700; letter-spacing: -.065em; line-height: 1.2; white-space: nowrap; }
 .logo-light { font-weight: 400; }
 .logo-dot { color: #c69338; }
 .logo-inverted { color: #f8f5eb; }
-.logo-inverted .logo-mark { background: #ffcf71; color: #214d3b; }
 .logo-inverted .logo-dot { color: #ffcf71; }
 .site-header { height: 83px; background: var(--background); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 30; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
@@ -550,7 +548,6 @@ em { color: var(--primary); font-weight: 400; }
   .section { padding-block: 55px; }
   .site-header { height: 72px; }
   .logo { font-size: 24px; }
-  .logo-mark { height: 34px; width: 34px; border-radius: 10px; }
   .header-actions { gap: 3px; }
   .hero-section { padding: 29px 0 49px; }
   .hero-grid { grid-template-columns: 1fr; gap: 27px; }
