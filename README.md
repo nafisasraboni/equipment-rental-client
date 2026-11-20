@@ -56,6 +56,6 @@ Both Workers use TLS-authenticated MongoDB and database-scoped credentials. Date
 
 ## Packages and assets
 
-Runtime: Next.js App Router, React, Better Auth and MongoDB adapter, MongoDB native driver, jose, Radix UI/shadcn-style components, Framer Motion, Lucide React, Recharts, Sonner, class-variance-authority, clsx, and tailwind-merge. Development/deployment: TypeScript, ESLint, Tailwind CSS, OpenNext Cloudflare, and Wrangler.
+Runtime: Next.js App Router, React, Better Auth and MongoDB adapter, MongoDB native driver, jose, Radix UI/shadcn-style components, Framer Motion, Lucide React, Recharts, Sonner, self-hosted Manrope Variable, class-variance-authority, clsx, and tailwind-merge. Development/deployment: TypeScript, ESLint, Tailwind CSS, OpenNext Cloudflare, and Wrangler.
 
-Demonstration equipment/hero photos use Unsplash. The site icon is a project-owned SVG. Use Stripe test cards in sandbox mode. Email verification, forgotten-password flows, automatic emails, and refunds are outside this assignment delivery.
+Demonstration equipment/hero photos use Unsplash. The site icon is a project-owned SVG. Use Stripe test cards in sandbox mode. The API automatically completes ended rentals and emails the customer and owner. Email verification, forgotten-password flows, and refunds are outside this assignment delivery.
